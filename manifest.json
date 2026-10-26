@@ -1,0 +1,57 @@
+{
+  "manifest_version": 3,
+  "name": "图提取 ImageGrab - 电商图片批量下载",
+  "version": "1.0.0",
+  "description": "在淘宝、京东、拼多多商家版商品详情页一键提取所有商品图片，集中勾选后批量下载为 PNG。",
+  "default_locale": "zh_CN",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "downloads",
+    "storage"
+  ],
+  "host_permissions": [
+    "*://*.taobao.com/*",
+    "*://*.tmall.com/*",
+    "*://*.jd.com/*",
+    "*://*.pinduoduo.com/*",
+    "*://*.yangkeduo.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "gallery.html",
+    "default_title": "图提取 ImageGrab",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.taobao.com/*",
+        "*://*.tmall.com/*",
+        "*://*.jd.com/*",
+        "*://*.pinduoduo.com/*",
+        "*://*.yangkeduo.com/*"
+      ],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["gallery.html", "gallery.js", "gallery.css"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
