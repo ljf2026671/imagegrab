@@ -25,6 +25,7 @@
       const images = extractImages();
       if (!images.length) {
         btn.textContent = '未找到图片';
+        btn.classList.remove('__imagegrab_loading__');
         setTimeout(() => (btn.textContent = '获取图片'), 1500);
         return;
       }
@@ -35,10 +36,12 @@
         source: location.href
       });
       btn.textContent = `已提取 ${images.length} 张`;
+      btn.classList.remove('__imagegrab_loading__');
       setTimeout(() => (btn.textContent = '获取图片'), 2000);
     } catch (e) {
       console.error('[ImageGrab] 提取失败：', e);
       btn.textContent = '提取失败';
+      btn.classList.remove('__imagegrab_loading__');
       setTimeout(() => (btn.textContent = '获取图片'), 1500);
     }
   });
